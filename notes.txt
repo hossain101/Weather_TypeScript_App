@@ -1,0 +1,4 @@
+To use express with typescript app: npm i typescript ts-node nodemon --save-dev
+
+add type declaration npm i @types/node @types/express
+

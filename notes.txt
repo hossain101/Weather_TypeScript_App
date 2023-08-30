@@ -2,3 +2,8 @@ To use express with typescript app: npm i typescript ts-node nodemon --save-dev
 
 add type declaration npm i @types/node @types/express
 
+JS functions are not run sequentially so to be able to run them sequentially use async or promise or firstFunction().then(secondFunction);
+
+
+https.get gets a response from the api and using the .on method on that response I can access the data sent by the api.
+

@@ -5,12 +5,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const https_1 = __importDefault(require("https"));
+const body_parser_1 = __importDefault(require("body-parser"));
 // Create a new express application instance
 const app = (0, express_1.default)();
+app.use(body_parser_1.default.urlencoded({ extended: true }));
 // The port the express app will listen on
 const port = 3000;
 app.get("/", (_req, _res) => {
-    var location = "dhaka";
+    //storing api url into a variable
+    //calling api using https weatherResponse holds the data from api
+    _res.sendFile(__dirname + "/index.html");
+}); //end of app.get
+app.post('/', (_req, _res) => {
+    console.log(_req.body.cityName);
+    var query = _req.body.cityName;
+    console.log("Post request received");
+    var location = query;
     var unit = "metric";
     var apiID = "5677c9fcdd0823346332ba920dcea180";
     //Storing geocodingURL into a variable
@@ -79,13 +89,7 @@ app.get("/", (_req, _res) => {
             }); // end of https.get for weatherURL
         }); //end of geoCodingResponse.on
     }); //end of https.get for geocodingURL
-    //storing api url into a variable
-    //calling api using https weatherResponse holds the data from api
-    //_res.sendFile(__dirname + "/index.html");
-    // app.post('/', (_req, _res) => {
-    //     console.log("Post request received");
-    // });
-}); //end of app.get
+});
 app.listen(port, () => {
     console.log(`TypeScript with Express
          http://localhost:${port}/`);

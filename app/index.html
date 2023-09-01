@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
-  </head>
-  <body>
-<form id="form" action="/" method="post">
 
-    <label for="city">City Name: </label>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-    <input type="text" id="city" name="cityName" placeholder="Enter city name" />
-    <button type="submit">GO</button>
-</form>
-  </body>
+<body>
+
+<h1>Welcome To Hossain Weather APP</h1>
+
+    <form id="form" action="/" method="post">
+        <input type="text" id="cityName" name="search" placeholder="Search By Loaction" autocomplete="off">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+
+
+    
+</body>
+
 </html>

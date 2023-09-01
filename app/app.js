@@ -9,16 +9,16 @@ const body_parser_1 = __importDefault(require("body-parser"));
 // Create a new express application instance
 const app = (0, express_1.default)();
 app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use(express_1.default.static(__dirname));
 // The port the express app will listen on
 const port = 3000;
 app.get("/", (_req, _res) => {
-    //storing api url into a variable
-    //calling api using https weatherResponse holds the data from api
     _res.sendFile(__dirname + "/index.html");
-}); //end of app.get
-app.post('/', (_req, _res) => {
-    console.log(_req.body.cityName);
-    var query = _req.body.cityName;
+});
+app.post("/", (_req, _res) => {
+    console.log(_req.body.search);
+    //Getting the city name from the html form input named
+    var query = _req.body.search;
     console.log("Post request received");
     var location = query;
     var unit = "metric";
@@ -76,14 +76,19 @@ app.post('/', (_req, _res) => {
                     console.log("Weather City : " + weatherCity);
                     _res.write("<h1>Weather Description : " + weatherDescription + "</h1>");
                     _res.write("<h1>Weather Icon : " + weatherIcon + "</h1>");
-                    _res.write("<h1>Weather Temperature : " + weatherTemp + "</h1>");
-                    _res.write("<h1>Weather Feels Like : " + weatherFeelsLike + "</h1>");
+                    _res.write("<h1>Weather Temperature : " +
+                        weatherTemp +
+                        "&deg celsius" +
+                        "</h1>");
+                    _res.write(`<h1>Weather Feels Like : ${weatherFeelsLike}&deg celsius</h1>`);
                     _res.write("<h1>Weather Humidity : " + weatherHumidity + "</h1>");
                     _res.write("<h1>Weather Wind Speed : " + weatherWindSpeed + "</h1>");
                     _res.write("<h1>Weather Wind Degree : " + weatherWindDeg + "</h1>");
                     _res.write("<h1>Weather Country : " + weatherCountry + "</h1>");
                     _res.write("<h1>Weather City : " + weatherCity + "</h1>");
-                    _res.write("<img src='http://openweathermap.org/img/wn/" + weatherIcon + ".png'>");
+                    _res.write("<img src='http://openweathermap.org/img/wn/" +
+                        weatherIcon +
+                        ".png'>");
                     _res.send();
                 });
             }); // end of https.get for weatherURL
